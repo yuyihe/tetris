@@ -31,12 +31,12 @@ MESSAGE_HEIGHT = 40
 
 # the width of the block
 BLOCK_WIDTH    = 20
-# The number of pixels to move the snake per update
-SNAKE_MOVEMENT = 5
-# The number of lives a snake has
-SNAKE_LIVES    = 3
-# the number of seconds (0 < float <= 1) between snake steps
-SNAKE_SPEED = 0.1
+# The number of pixels to move the GAME per update
+GAME_MOVEMENT = 5
+# The number of lives a GAME has
+GAME_LIVES    = 3
+# the number of seconds (0 < float <= 1) between GAME steps
+GAME_SPEED = 0.5
 
 
 ### GAME CONSTANTS ###
@@ -59,6 +59,14 @@ left = 1
 right = 2
 up = 3
 down = 4
+
+OTetrimino = 11
+ITetrimino = 12
+TTetrimino = 13
+LTetrimino = 14
+JTetrimino = 15
+STetrimino = 16
+ZTetrimino = 17
 
 
 ### USE COMMAND LINE ARGUMENTS TO CHANGE NUMBER OF ALIENS IN A ROW"""

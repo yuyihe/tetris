@@ -31,24 +31,9 @@ from game2d import *
 # calls the method.
 
 
-class Candy(GRectangle):
+class OTetrimino(GRectangle):
     """
-    A class to represent a single alien.
-
-    At the very least, you want a __init__ method to initialize the alien dimensions.
-    These dimensions are all specified in consts.py.
-
-    You also MIGHT want to add code to detect a collision with a bolt. We do not require
-    this.  You could put this method in Wave if you wanted to.  But the advantage of
-    putting it here is that Ships and Aliens collide with different bolts.  Ships
-    collide with Alien bolts, not Ship bolts.  And Aliens collide with Ship bolts, not
-    Alien bolts. An easy way to keep this straight is for this class to have its own
-    collision method.
-
-    However, there is no need for any more attributes other than those inherited by
-    GImage. You would only add attributes if you needed them for extra gameplay
-    features (like giving each alien a score value). If you add attributes, list
-    them below.
+    A class to represent a OTetrimino.
 
     LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
     """
@@ -56,86 +41,100 @@ class Candy(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor=fillcolor)
-
-
-    # METHOD TO CHECK FOR COLLISION (IF DESIRED)
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='yellow',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
 
-class Snake(GRectangle):
+class ITetrimino(GRectangle):
     """
-    A class representing a laser bolt.
-
-    Laser bolts are often just thin, white rectangles.  The size of the bolt is
-    determined by constants in consts.py. We MUST subclass GRectangle, because we
-    need to add an extra attribute for the velocity of the bolt.
-
-    The class Wave will need to look at these attributes, so you will need getters for
-    them.  However, it is possible to write this assignment with no setters for the
-    velocities.  That is because the velocity is fixed and cannot change once the bolt
-    is fired.
-
-    In addition to the getters, you need to write the __init__ method to set the starting
-    velocity. This __init__ method will need to call the __init__ from GRectangle as a
-    helper.
-
-    You also MIGHT want to create a method to move the bolt.  You move the bolt by adding
-    the velocity to the y-position.  However, the getter allows Wave to do this on its
-    own, so this method is not required.
-
-    INSTANCE ATTRIBUTES:
-        _velocity: The velocity in y direction [int or float]
+    A class to represent a ITetrimino.
 
     LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
     """
 
-
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
-    # INITIALIZER TO SET THE VELOCITY
-    def __init__(self,left,bottom,width,height,fillcolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor=fillcolor)
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='cyan',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
-
-class Boundry(GRectangle):
+class TTetrimino(GRectangle):
     """
-    A class representing a laser bolt.
-
-    Laser bolts are often just thin, white rectangles.  The size of the bolt is
-    determined by constants in consts.py. We MUST subclass GRectangle, because we
-    need to add an extra attribute for the velocity of the bolt.
-
-    The class Wave will need to look at these attributes, so you will need getters for
-    them.  However, it is possible to write this assignment with no setters for the
-    velocities.  That is because the velocity is fixed and cannot change once the bolt
-    is fired.
-
-    In addition to the getters, you need to write the __init__ method to set the starting
-    velocity. This __init__ method will need to call the __init__ from GRectangle as a
-    helper.
-
-    You also MIGHT want to create a method to move the bolt.  You move the bolt by adding
-    the velocity to the y-position.  However, the getter allows Wave to do this on its
-    own, so this method is not required.
-
-    INSTANCE ATTRIBUTES:
-        _velocity: The velocity in y direction [int or float]
+    A class to represent a TTetrimino.
 
     LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
     """
 
-
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
-    # INITIALIZER TO SET THE VELOCITY
-    def __init__(self,left,bottom,width,height,fillcolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor=fillcolor)
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='pink',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
-# IF YOU NEED ADDITIONAL MODEL CLASSES, THEY GO HERE
+class LTetrimino(GRectangle):
+    """
+    A class to represent a LTetrimino.
+
+    LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
+    """
+
+    # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
+
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='orange',linecolor='black')
+
+    # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+
+class JTetrimino(GRectangle):
+    """
+    A class to represent a JTetrimino.
+
+    LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
+    """
+
+    # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
+
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='blue,linecolor='black')
+
+    # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+
+    class STetrimino(GRectangle):
+    """
+    A class to represent a STetrimino.
+
+    LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
+    """
+
+    # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
+
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='green',linecolor='black')
+
+    # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+
+    class ZTetrimino(GRectangle):
+    """
+    A class to represent a ZTetrimino.
+
+    LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
+    """
+
+    # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
+
+    # INITIALIZER TO CREATE AN ALIEN
+    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
+        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='red',linecolor='black')
+
+    # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+
+

@@ -62,14 +62,6 @@ class Wave(object):
     """
 
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
-    def _getFail(self):
-        return self._fail
-
-    def _getScore(self):
-        return self._score
-
-    def getHighscore(self):
-        return self._highscore
 
     # INITIALIZER (standard form) TO CREATE SHIP AND ALIENS
     def __init__(self,speed,highscore):
@@ -79,6 +71,8 @@ class Wave(object):
         Parameter speed: The speed the snake are marching in the current game
         Precondition: speed is a float greater than 0
         """
+        self._shape = self._pickShape()
+        self._determine(self._shape)
         self._head = self._createHead()
         self._snake = [self._head]
         self._candy = self._createCandy()
@@ -95,30 +89,32 @@ class Wave(object):
         self._fail = False
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
     def update(self,direction,dt,game):
-        self._direction(direction)
-        self._snakeTime(dt)
-        if self._hitBoundry() or self._eatItself():
-            self._fail = True
+        
 
     # DRAW METHOD TO DRAW THE SHIP, ALIENS, DEFENSIVE LINE AND BOLTS
     def draw(self,view):
         """
         Draws the game objects to the view.
         """
-        for x in self._boundry:
-            x.draw(view)
-        if self._candy is not None:
-            self._candy.draw(view)
-        if self._snake is not None:
-            for part in self._snake:
-                if part is not None:
-                    part.draw(view)
-        self._scoretext.draw(view)
-        self._highscoretext.draw(view)
+        
 
     # HELPER METHODS FOR COLLISION DETECTION
-    def _updateHead(self):
-        self._head = self._snake[0]
+
+    def _pickShape(self):
+        li = [OTetrimino, ITetrimino, TTetrimino, LTetrimino, JTetrimino, STetrimino, ZTetrimino]
+        return random.choice(li)
+
+    def _determine(self,shape):
+        if (shape == OTetrimino):
+            self._initOTetrimino()
+        elif (shape == ITetrimino):
+            self._initITetrimino()
+        elif (shape == ITetrimino):
+            self._initITetrimino()
+        elif (shape == ITetrimino):
+            self._initITetrimino()
+        elif (shape == ITetrimino):
+            self._initITetrimino()
 
     def _createHead(self):
         """

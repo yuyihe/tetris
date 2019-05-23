@@ -91,7 +91,7 @@ class Snake(GameApp):
         height=MESSAGE_HEIGHT,width=MESSAGE_WIDTH,text='Press "s" to start',
         font_size='40',font_name='arcade')
         self._wave = None
-        self._speed = SNAKE_SPEED
+        self._speed = GAME_SPEED
         self._highscore = 0
 
     def update(self,dt):
@@ -143,7 +143,7 @@ class Snake(GameApp):
         if self._state == STATE_INACTIVE:
             self._key()
         elif self._state == STATE_NEWWAVE:
-            self._wave = Wave(SNAKE_SPEED,self._highscore)
+            self._wave = Wave(GAME_SPEED,self._highscore)
             self._state = STATE_ACTIVE
             self._text=None
         elif self._state == STATE_ACTIVE:
@@ -190,7 +190,7 @@ class Snake(GameApp):
                 self._wave = None
                 self._state = STATE_NEWWAVE
 
-    def _snakeDirection(self):
+    def _tetrisDirection(self):
         """
         Returns the direction that player wants the snake to move
 
@@ -218,7 +218,7 @@ class Snake(GameApp):
         Parameter dt: The time in seconds since last update
         Precondition: dt is a number (int or float)
         """
-        self._wave.update(self._snakeDirection(),dt,self)
+        self._wave.update(self._tetrisDirection(),dt,self)
         if self._wave._getFail():
             self._state = STATE_COMPLETE
             self._text = GLabel(x=GAME_WIDTH/2,y=GAME_HEIGHT/2,
