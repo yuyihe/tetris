@@ -32,12 +32,10 @@ MESSAGE_HEIGHT = 40
 
 # the width of the block
 BLOCK_WIDTH    = 20
-# The number of pixels to move the GAME per update
-GAME_MOVEMENT = 5
-# The number of lives a GAME has
-GAME_LIVES    = 3
+# The number of pixels to move the Tetrimino per update
+TETRIMINO_MOVEMENT = 20
 # the number of seconds (0 < float <= 1) between GAME steps
-GAME_SPEED = 0.5
+GAME_SPEED = 1
 
 
 ### GAME CONSTANTS ###

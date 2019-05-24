@@ -72,12 +72,16 @@ class Wave(object):
         Parameter speed: The speed the snake are marching in the current game
         Precondition: speed is a float greater than 0
         """
+        self._time = 0
+        self._speed = speed
         self._shape = self._pickShape()
-        self._determine(self._shape)
+        self._currentTetriminoObject = self._determine(self._shape)
         
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
-    def update(self,direction,dt,game):
-        pass
+    def update(self,dt,game):
+        if self._currentTetriminoObject is not None:
+            
+            self._moveCurrentTetriminoObject(self._currentTetriminoObject,dt)
         
 
     # DRAW METHOD TO DRAW THE SHIP, ALIENS, DEFENSIVE LINE AND BOLTS
@@ -89,6 +93,15 @@ class Wave(object):
             for part in self._currentTetriminoObject:
                 if part is not None:
                     part.draw(view)
+
+    def _moveCurrentTetriminoObject(self,currentTetriminoObject,dt):
+        self._time = self._time+dt
+        if self._time > self._speed:
+            self._time = 0
+            for block in currentTetriminoObject:
+                block.bottom = block.bottom-BLOCK_WIDTH
+                
+
            
         
 
@@ -100,19 +113,19 @@ class Wave(object):
 
     def _determine(self,shape):
         if (shape == OTetrimino):
-            self._initOTetrimino()
+            return self._initOTetrimino()
         elif (shape == ITetrimino):
-            self._initITetrimino()
+            return self._initITetrimino()
         elif (shape == TTetrimino):
-            self._initTTetrimino()
+            return self._initTTetrimino()
         elif (shape == LTetrimino):
-            self._initLTetrimino()
+            return self._initLTetrimino()
         elif (shape == JTetrimino):
-            self._initJTetrimino()
+            return self._initJTetrimino()
         elif (shape == STetrimino):
-            self._initSTetrimino()
+            return self._initSTetrimino()
         elif (shape == ZTetrimino):
-            self._initZTetrimino()
+            return self._initZTetrimino()
 
     def _initOTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH*2)/20)*10
@@ -120,9 +133,9 @@ class Wave(object):
         topLeftOTetrimino = OTetrimino(left,bottom)
         topRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom)
         bottomLeftOTetrimino = OTetrimino(left,bottom-BLOCK_WIDTH)
-        topRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
-        OTetriminoObject = [topLeftOTetrimino,topRightOTetrimino,bottomLeftOTetrimino,topRightOTetrimino]
-        self._currentTetriminoObject = OTetriminoObject
+        bottomRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        OTetriminoObject = [topLeftOTetrimino,topRightOTetrimino,bottomLeftOTetrimino,bottomRightOTetrimino]
+        return OTetriminoObject
 
     def _initITetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH*4)/20)*10
@@ -132,7 +145,7 @@ class Wave(object):
         middleRightITetrimino = ITetrimino(left+BLOCK_WIDTH*2,bottom)
         mostRightITetrimino = ITetrimino(left+BLOCK_WIDTH*3,bottom)
         ITetriminoObject = [mostLeftITetrimino,middleLeftITetrimino,middleRightITetrimino,mostRightITetrimino]
-        self._currentTetriminoObject = ITetriminoObject
+        return ITetriminoObject
 
     def _initTTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
@@ -142,7 +155,7 @@ class Wave(object):
         bottomMiddleTTetrimino = TTetrimino(left,bottom-BLOCK_WIDTH)
         bottomRightTTetrimino = TTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
         TTetriminoObject = [topTTetrimino,bottomLeftTTetrimino,bottomMiddleTTetrimino,bottomRightTTetrimino]
-        self._currentTetriminoObject = TTetriminoObject
+        return TTetriminoObject
 
     def _initLTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
@@ -152,7 +165,7 @@ class Wave(object):
         bottomMiddleLTetrimino = LTetrimino(left,bottom-BLOCK_WIDTH)
         bottomRightLTetrimino = LTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
         LTetriminoObject = [topLTetrimino,bottomLeftLTetrimino,bottomMiddleLTetrimino,bottomRightLTetrimino]
-        self._currentTetriminoObject = LTetriminoObject
+        return LTetriminoObject
 
     def _initJTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
@@ -162,7 +175,7 @@ class Wave(object):
         bottomMiddleJTetrimino = JTetrimino(left,bottom-BLOCK_WIDTH)
         bottomRightJTetrimino = JTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
         JTetriminoObject = [topJTetrimino,bottomLeftJTetrimino,bottomMiddleJTetrimino,bottomRightJTetrimino]
-        self._currentTetriminoObject = JTetriminoObject
+        return JTetriminoObject
 
     def _initSTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
@@ -172,7 +185,7 @@ class Wave(object):
         bottomLeftSTetrimino = STetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
         bottomRightSTetrimino = STetrimino(left,bottom-BLOCK_WIDTH)
         STetriminoObject = [topLeftSTetrimino,topRightSTetrimino,bottomLeftSTetrimino,bottomRightSTetrimino]
-        self._currentTetriminoObject = STetriminoObject
+        return STetriminoObject
 
     def _initZTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
@@ -182,6 +195,6 @@ class Wave(object):
         bottomLeftZTetrimino = ZTetrimino(left,bottom-BLOCK_WIDTH)
         bottomRightZTetrimino = ZTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
         ZTetriminoObject = [topLeftZTetrimino,topRightZTetrimino,bottomLeftZTetrimino,bottomRightZTetrimino]
-        self._currentTetriminoObject = ZTetriminoObject
+        return ZTetriminoObject
 
     
