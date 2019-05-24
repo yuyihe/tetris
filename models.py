@@ -41,8 +41,8 @@ class OTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='yellow',linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='yellow',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -57,9 +57,8 @@ class ITetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='cyan',linecolor='black')
-
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='cyan',linecolor='black')
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
 class TTetrimino(GRectangle):
@@ -72,8 +71,8 @@ class TTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='pink',linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='pink',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -87,8 +86,8 @@ class LTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='orange',linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='orange',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -102,12 +101,12 @@ class JTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='blue,linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='blue',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
-    class STetrimino(GRectangle):
+class STetrimino(GRectangle):
     """
     A class to represent a STetrimino.
 
@@ -117,12 +116,12 @@ class JTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='green',linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='green',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
-    class ZTetrimino(GRectangle):
+class ZTetrimino(GRectangle):
     """
     A class to represent a ZTetrimino.
 
@@ -132,8 +131,8 @@ class JTetrimino(GRectangle):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
 
     # INITIALIZER TO CREATE AN ALIEN
-    def __init__(self,left,bottom,width,height,fillcolor,linecolor):
-        super().__init__(left=left,bottom=bottom,width=width,height=height,fillcolor='red',linecolor='black')
+    def __init__(self,left,bottom):
+        super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='red',linecolor='black')
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 

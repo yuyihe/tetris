@@ -147,8 +147,7 @@ class Snake(GameApp):
             self._state = STATE_ACTIVE
             self._text=None
         elif self._state == STATE_ACTIVE:
-            self._activeStateHelper(dt)
-            self._pause()
+            pass         
         elif self._state == STATE_PAUSED:
             self._key()
         elif self._state == STATE_COMPLETE:
@@ -211,26 +210,4 @@ class Snake(GameApp):
         else:
             return nothing
 
-    def _activeStateHelper(self,dt):
-        """
-        Method to react when state has changed in a wave
-
-        Parameter dt: The time in seconds since last update
-        Precondition: dt is a number (int or float)
-        """
-        self._wave.update(self._tetrisDirection(),dt,self)
-        if self._wave._getFail():
-            self._state = STATE_COMPLETE
-            self._text = GLabel(x=GAME_WIDTH/2,y=GAME_HEIGHT/2,
-            text='Score: '+str(self._wave._getScore())+
-            '. Press "s" to start a new game',font_size='40',
-            font_name='arcade')
-            self._key()
-
-    def _pause(self):
-        """
-        Detect when player press down 'p' and pause the game and display the
-        pasued message
-        """
-        if self.input.is_key_down("p"):
-            self._state = STATE_PAUSED
+    

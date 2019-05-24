@@ -14,9 +14,10 @@ import sys
 ### WINDOW CONSTANTS (all coordinates are in pixels) ###
 
 #: the width of the game display
-GAME_WIDTH  = 800
+GAME_WIDTH  = 200
 #: the height of the game display
-GAME_HEIGHT = 700
+GAME_HEIGHT = 460
+TOP_EDGE = 60
 
 
 ### MESSAGE CONSTANTS ###

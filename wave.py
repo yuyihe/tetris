@@ -19,6 +19,7 @@ from game2d import *
 from consts import *
 from models import *
 import random
+import math
 
 # PRIMARY RULE: Wave can only access attributes in models.py via getters/setters
 # Wave is NOT allowed to access anything in app.py (Subcontrollers are not permitted
@@ -73,22 +74,10 @@ class Wave(object):
         """
         self._shape = self._pickShape()
         self._determine(self._shape)
-        self._head = self._createHead()
-        self._snake = [self._head]
-        self._candy = self._createCandy()
-        self._boundry = self._createBoundry()
-        self._speed = speed
-        self._snakeDirection = nothing
-        self._time = 0
-        self._score = 0
-        self._highscore = highscore
-        self._scoretext = GLabel(left=0,top=GAME_HEIGHT,
-        text='Score: '+str(self._score),font_name='RetroGame')
-        self._highscoretext = GLabel(right=GAME_WIDTH,top=GAME_HEIGHT,
-        text='High Score: '+str(self._highscore),font_name='RetroGame')
-        self._fail = False
+        
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
     def update(self,direction,dt,game):
+        pass
         
 
     # DRAW METHOD TO DRAW THE SHIP, ALIENS, DEFENSIVE LINE AND BOLTS
@@ -96,6 +85,11 @@ class Wave(object):
         """
         Draws the game objects to the view.
         """
+        if self._currentTetriminoObject is not None:
+            for part in self._currentTetriminoObject:
+                if part is not None:
+                    part.draw(view)
+           
         
 
     # HELPER METHODS FOR COLLISION DETECTION
@@ -109,223 +103,85 @@ class Wave(object):
             self._initOTetrimino()
         elif (shape == ITetrimino):
             self._initITetrimino()
-        elif (shape == ITetrimino):
-            self._initITetrimino()
-        elif (shape == ITetrimino):
-            self._initITetrimino()
-        elif (shape == ITetrimino):
-            self._initITetrimino()
+        elif (shape == TTetrimino):
+            self._initTTetrimino()
+        elif (shape == LTetrimino):
+            self._initLTetrimino()
+        elif (shape == JTetrimino):
+            self._initJTetrimino()
+        elif (shape == STetrimino):
+            self._initSTetrimino()
+        elif (shape == ZTetrimino):
+            self._initZTetrimino()
 
-    def _createHead(self):
-        """
-        Return an object of snake head
-        """
-        left = GAME_WIDTH/BLOCK_WIDTH//2*BLOCK_WIDTH
-        bottom = GAME_HEIGHT/BLOCK_WIDTH//2*BLOCK_WIDTH
-        width = BLOCK_WIDTH
-        fillcolor = 'green'
-        head = Snake(left,bottom,width,width,fillcolor)
-        return head
+    def _initOTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*2)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topLeftOTetrimino = OTetrimino(left,bottom)
+        topRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom)
+        bottomLeftOTetrimino = OTetrimino(left,bottom-BLOCK_WIDTH)
+        topRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        OTetriminoObject = [topLeftOTetrimino,topRightOTetrimino,bottomLeftOTetrimino,topRightOTetrimino]
+        self._currentTetriminoObject = OTetriminoObject
 
-    def _createBody(self,left,bottom):
-        """
-        Return an object of snake body
-        """
-        width = BLOCK_WIDTH
-        fillcolor = 'green'
-        body = Snake(left,bottom,width,width,fillcolor)
-        return body
+    def _initITetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*4)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        mostLeftITetrimino = ITetrimino(left,bottom)
+        middleLeftITetrimino = ITetrimino(left+BLOCK_WIDTH,bottom)
+        middleRightITetrimino = ITetrimino(left+BLOCK_WIDTH*2,bottom)
+        mostRightITetrimino = ITetrimino(left+BLOCK_WIDTH*3,bottom)
+        ITetriminoObject = [mostLeftITetrimino,middleLeftITetrimino,middleRightITetrimino,mostRightITetrimino]
+        self._currentTetriminoObject = ITetriminoObject
 
-    def _createCandy(self):
-        """
-        Return an object of candy
-        """
-        left = random.randint(1,GAME_WIDTH/BLOCK_WIDTH-2)*BLOCK_WIDTH
-        bottom = random.randint(1,GAME_HEIGHT/BLOCK_WIDTH-2)*BLOCK_WIDTH
-        width = BLOCK_WIDTH
-        fillcolor = 'red'
-        candy = Candy(left,bottom,width,width,fillcolor)
-        if self._candyOnEmptyScreen(candy):
-            return candy
-        else:
-            return self._createCandy()
+    def _initTTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topTTetrimino = TTetrimino(left,bottom)
+        bottomLeftTTetrimino = TTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        bottomMiddleTTetrimino = TTetrimino(left,bottom-BLOCK_WIDTH)
+        bottomRightTTetrimino = TTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        TTetriminoObject = [topTTetrimino,bottomLeftTTetrimino,bottomMiddleTTetrimino,bottomRightTTetrimino]
+        self._currentTetriminoObject = TTetriminoObject
 
-    def _candyOnEmptyScreen(self,candy):
-        """
-        Return True if the candy that;s about to be created is on empty screen
-        """
-        create = True
-        for part in self._snake:
-            if self._whetherCollides(part,candy):
-                create = False
-        return create
+    def _initLTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topLTetrimino = LTetrimino(left+BLOCK_WIDTH,bottom)
+        bottomLeftLTetrimino = LTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        bottomMiddleLTetrimino = LTetrimino(left,bottom-BLOCK_WIDTH)
+        bottomRightLTetrimino = LTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        LTetriminoObject = [topLTetrimino,bottomLeftLTetrimino,bottomMiddleLTetrimino,bottomRightLTetrimino]
+        self._currentTetriminoObject = LTetriminoObject
 
+    def _initJTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topJTetrimino = JTetrimino(left-BLOCK_WIDTH,bottom)
+        bottomLeftJTetrimino = JTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        bottomMiddleJTetrimino = JTetrimino(left,bottom-BLOCK_WIDTH)
+        bottomRightJTetrimino = JTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        JTetriminoObject = [topJTetrimino,bottomLeftJTetrimino,bottomMiddleJTetrimino,bottomRightJTetrimino]
+        self._currentTetriminoObject = JTetriminoObject
 
-    def _createBoundry(self):
-        """
-        Return a list of boundrys
-        """
-        list = (self._boundryTop()+self._boundryLeft()+
-        self._boundryRight()+self._boundryBottom())
-        return list
+    def _initSTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topLeftSTetrimino = STetrimino(left,bottom)
+        topRightSTetrimino = STetrimino(left+BLOCK_WIDTH,bottom)
+        bottomLeftSTetrimino = STetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        bottomRightSTetrimino = STetrimino(left,bottom-BLOCK_WIDTH)
+        STetriminoObject = [topLeftSTetrimino,topRightSTetrimino,bottomLeftSTetrimino,bottomRightSTetrimino]
+        self._currentTetriminoObject = STetriminoObject
 
-    def _boundryTop(self):
-        li = []
-        for a in range(int(GAME_WIDTH/BLOCK_WIDTH)):
-            left = a*BLOCK_WIDTH
-            bottom = GAME_HEIGHT-BLOCK_WIDTH
-            width = BLOCK_WIDTH
-            fillcolor = 'grey'
-            boundry = Boundry(left,bottom,width,width,fillcolor)
-            li.append(boundry)
-        return li
+    def _initZTetrimino(self):
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
+        topLeftZTetrimino = ZTetrimino(left-BLOCK_WIDTH,bottom)
+        topRightZTetrimino = ZTetrimino(left,bottom)
+        bottomLeftZTetrimino = ZTetrimino(left,bottom-BLOCK_WIDTH)
+        bottomRightZTetrimino = ZTetrimino(left+BLOCK_WIDTH,bottom-BLOCK_WIDTH)
+        ZTetriminoObject = [topLeftZTetrimino,topRightZTetrimino,bottomLeftZTetrimino,bottomRightZTetrimino]
+        self._currentTetriminoObject = ZTetriminoObject
 
-    def _boundryLeft(self):
-        li = []
-        for a in range(int(GAME_HEIGHT/BLOCK_WIDTH)):
-            left = 0
-            bottom = a*BLOCK_WIDTH
-            width = BLOCK_WIDTH
-            fillcolor = 'grey'
-            boundry = Boundry(left,bottom,width,width,fillcolor)
-            li.append(boundry)
-        li.pop(-1)
-        return li
-
-    def _boundryRight(self):
-        li = []
-        for a in range(int(GAME_HEIGHT/BLOCK_WIDTH)):
-            left = GAME_WIDTH-BLOCK_WIDTH
-            bottom = a*BLOCK_WIDTH
-            width = BLOCK_WIDTH
-            fillcolor = 'grey'
-            boundry = Boundry(left,bottom,width,width,fillcolor)
-            li.append(boundry)
-        li.pop(-1)
-        return li
-
-    def _boundryBottom(self):
-        li = []
-        for a in range(int(GAME_WIDTH/BLOCK_WIDTH)):
-            left = a*BLOCK_WIDTH
-            bottom = 0
-            width = BLOCK_WIDTH
-            fillcolor = 'grey'
-            boundry = Boundry(left,bottom,width,width,fillcolor)
-            li.append(boundry)
-        li.pop(0)
-        li.pop(-1)
-        return li
-
-    def _direction(self,direction):
-        if direction != nothing:
-            if len(self._snake) == 1:
-                self._snakeDirection = direction
-            elif ((self._snakeDirection == left and direction != right) or
-            (self._snakeDirection == right and direction != left) or
-            (self._snakeDirection == up and direction != down) or
-            (self._snakeDirection == down and direction != up)):
-                self._snakeDirection = direction
-
-    def _snakeTime(self,dt):
-        """
-        Method to move the snake across the screen.
-        It determines when and which direction the snake should be moving
-
-        Parameter dt: The time in seconds since last update
-        Precondition: dt is a number (int or float)
-        """
-        self._time = self._time+dt
-        if self._time > self._speed:
-            self._time = 0
-            if self._snakeDirection == left:
-                self._snakeGoLeft()
-            elif self._snakeDirection == right:
-                self._snakeGoRight()
-            elif self._snakeDirection == up:
-                self._snakeGoUp()
-            elif self._snakeDirection == down:
-                self._snakeGoDown()
-
-    def _snakeGoLeft(self):
-        left = self._head.left-BLOCK_WIDTH
-        bottom = self._head.bottom
-        a = self._createBody(left,bottom)
-        self._snake.insert(0,a)
-        if self._whetherCollides(self._candy,self._head):
-            self._updateCandyAndScore()
-        else:
-            self._snake.pop(-1)
-        self._updateHead()
-
-    def _snakeGoRight(self):
-        left = self._head.left+BLOCK_WIDTH
-        bottom = self._head.bottom
-        a = self._createBody(left,bottom)
-        self._snake.insert(0,a)
-        if self._whetherCollides(self._candy,self._head):
-            self._updateCandyAndScore()
-        else:
-            self._snake.pop(-1)
-        self._updateHead()
-
-    def _snakeGoUp(self):
-        left = self._head.left
-        bottom = self._head.bottom+BLOCK_WIDTH
-        a = self._createBody(left,bottom)
-        self._snake.insert(0,a)
-        if self._whetherCollides(self._candy,self._head):
-            self._updateCandyAndScore()
-        else:
-            self._snake.pop(-1)
-        self._updateHead()
-
-    def _snakeGoDown(self):
-        left = self._head.left
-        bottom = self._head.bottom-BLOCK_WIDTH
-        a = self._createBody(left,bottom)
-        self._snake.insert(0,a)
-        if self._whetherCollides(self._candy,self._head):
-            self._updateCandyAndScore()
-        else:
-            self._snake.pop(-1)
-        self._updateHead()
-
-
-    def _whetherCollides(self,a,b):
-        x = a.left+BLOCK_WIDTH/2
-        y = a.bottom+BLOCK_WIDTH/2
-        determine = b.contains((x,y))
-        return determine
-
-    def _updateCandyAndScore(self):
-        self._candy = self._createCandy()
-        self._score = self._score+10
-        self._scoretext = GLabel(left=0,top=GAME_HEIGHT,
-        text='Score: '+str(self._score),font_name='RetroGame')
-        if self._score > self._highscore:
-            self._highscore = self._score
-            self._highscoretext = GLabel(right=GAME_WIDTH,top=GAME_HEIGHT,
-            text='High Score: '+str(self._highscore),font_name='RetroGame')
-
-    def _hitBoundry(self):
-        """
-        Return whether or not the head of the snake collides with the boundry
-        """
-        collision = False
-        for block in self._boundry:
-            if self._whetherCollides(block,self._head):
-                collision = True
-        return collision
-
-    def _eatItself(self):
-        """
-        Return True if the snake's head collides with it self(eat itself)
-        """
-        eat = False
-        copy = self._snake.copy()
-        copy.pop(0)
-        for body in copy:
-            if self._whetherCollides(body,self._head):
-                eat = True
-        return eat
+    
