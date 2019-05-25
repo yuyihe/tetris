@@ -77,7 +77,7 @@ class Wave(object):
         self._goLeft = False
         self._goRight = False
         self._rotate = False
-        self._shape = _pickShape()
+        self._shape = self._pickShape()
         self._currentTetriminoObject = self._determine(self._shape)
         
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS

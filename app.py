@@ -17,7 +17,7 @@ from wave import *
 # PRIMARY RULE: Invaders can only access attributes in wave.py via getters/setters
 # Invaders is NOT allowed to access anything in models.py
 
-class Snake(GameApp):
+class Tetris(GameApp):
     """
     The primary controller class for the Alien Invaders application
 

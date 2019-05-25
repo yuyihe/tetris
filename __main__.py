@@ -25,4 +25,4 @@ from app import *
 
 # Application code
 if __name__ == '__main__':
-    Snake(width=GAME_WIDTH,height=GAME_HEIGHT).run()
+    Tetris(width=GAME_WIDTH,height=GAME_HEIGHT).run()
