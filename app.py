@@ -147,7 +147,7 @@ class Snake(GameApp):
             self._state = STATE_ACTIVE
             self._text=None
         elif self._state == STATE_ACTIVE:
-            self._wave.update(dt,self)        
+            self._wave.update(self._tetrisDirection(),dt,self)        
         elif self._state == STATE_PAUSED:
             self._key()
         elif self._state == STATE_COMPLETE:

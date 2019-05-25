@@ -74,14 +74,16 @@ class Wave(object):
         """
         self._time = 0
         self._speed = speed
+        self._goLeft = False
+        self._goRight = False
         self._shape = self._pickShape()
         self._currentTetriminoObject = self._determine(self._shape)
         
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
-    def update(self,dt,game):
-        if self._currentTetriminoObject is not None:
-            
-            self._moveCurrentTetriminoObject(self._currentTetriminoObject,dt)
+    def update(self,direction,dt,game):
+        if self._currentTetriminoObject is not None:           
+            self._moveCurrentTetriminoObject(self._currentTetriminoObject,dt,direction)
+           
         
 
     # DRAW METHOD TO DRAW THE SHIP, ALIENS, DEFENSIVE LINE AND BOLTS
@@ -94,12 +96,23 @@ class Wave(object):
                 if part is not None:
                     part.draw(view)
 
-    def _moveCurrentTetriminoObject(self,currentTetriminoObject,dt):
+    def _moveCurrentTetriminoObject(self,currentTetriminoObject,dt,direction):
+        if direction == left:
+            self._goLeft = True
+        elif direction == right:
+            self._goRight = True
         self._time = self._time+dt
         if self._time > self._speed:
             self._time = 0
             for block in currentTetriminoObject:
                 block.bottom = block.bottom-BLOCK_WIDTH
+                if self._goLeft:
+                    block.left = max(block.left-BLOCK_WIDTH,0)
+                elif self._goRight:
+                    block.left = min(block.left+BLOCK_WIDTH,GAME_WIDTH-BLOCK_WIDTH)
+            self._goLeft = False           
+            self._goRight = False
+                
                 
 
            

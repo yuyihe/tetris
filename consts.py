@@ -35,7 +35,7 @@ BLOCK_WIDTH    = 20
 # The number of pixels to move the Tetrimino per update
 TETRIMINO_MOVEMENT = 20
 # the number of seconds (0 < float <= 1) between GAME steps
-GAME_SPEED = 1
+GAME_SPEED = 0.5
 
 
 ### GAME CONSTANTS ###
