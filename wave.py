@@ -141,7 +141,7 @@ class Wave(object):
             return self._initZTetrimino()
 
     def _initOTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*2)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*2)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topLeftOTetrimino = OTetrimino(left,bottom)
         topRightOTetrimino = OTetrimino(left+BLOCK_WIDTH,bottom)
@@ -151,7 +151,7 @@ class Wave(object):
         return OTetriminoObject
 
     def _initITetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*4)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH*4)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         mostLeftITetrimino = ITetrimino(left,bottom)
         middleLeftITetrimino = ITetrimino(left+BLOCK_WIDTH,bottom)
@@ -161,7 +161,8 @@ class Wave(object):
         return ITetriminoObject
 
     def _initTTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
+        print(left)
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topTTetrimino = TTetrimino(left,bottom)
         bottomLeftTTetrimino = TTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
@@ -171,7 +172,7 @@ class Wave(object):
         return TTetriminoObject
 
     def _initLTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topLTetrimino = LTetrimino(left+BLOCK_WIDTH,bottom)
         bottomLeftLTetrimino = LTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
@@ -181,7 +182,7 @@ class Wave(object):
         return LTetriminoObject
 
     def _initJTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topJTetrimino = JTetrimino(left-BLOCK_WIDTH,bottom)
         bottomLeftJTetrimino = JTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
@@ -191,7 +192,7 @@ class Wave(object):
         return JTetriminoObject
 
     def _initSTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topLeftSTetrimino = STetrimino(left,bottom)
         topRightSTetrimino = STetrimino(left+BLOCK_WIDTH,bottom)
@@ -201,7 +202,7 @@ class Wave(object):
         return STetriminoObject
 
     def _initZTetrimino(self):
-        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/20)*10
+        left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topLeftZTetrimino = ZTetrimino(left-BLOCK_WIDTH,bottom)
         topRightZTetrimino = ZTetrimino(left,bottom)
