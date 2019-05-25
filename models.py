@@ -43,6 +43,7 @@ class OTetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='yellow',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -59,6 +60,7 @@ class ITetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='cyan',linecolor='black')
+        self._position = 1
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
 class TTetrimino(GRectangle):
@@ -73,6 +75,7 @@ class TTetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='pink',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -88,6 +91,7 @@ class LTetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='orange',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -103,6 +107,7 @@ class JTetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='blue',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -118,6 +123,7 @@ class STetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='green',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 
@@ -133,6 +139,7 @@ class ZTetrimino(GRectangle):
     # INITIALIZER TO CREATE AN ALIEN
     def __init__(self,left,bottom):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='red',linecolor='black')
+        self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
 

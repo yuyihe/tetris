@@ -76,6 +76,7 @@ class Wave(object):
         self._speed = speed
         self._goLeft = False
         self._goRight = False
+        self._rotate = False
         self._shape = self._pickShape()
         self._currentTetriminoObject = self._determine(self._shape)
         
@@ -101,6 +102,8 @@ class Wave(object):
             self._goLeft = True
         elif direction == right:
             self._goRight = True
+        elif direction == up:
+            self._rotate = True
         self._time = self._time+dt
         if self._time > self._speed:
             self._time = 0
@@ -110,8 +113,28 @@ class Wave(object):
                     block.left = max(block.left-BLOCK_WIDTH,0)
                 elif self._goRight:
                     block.left = min(block.left+BLOCK_WIDTH,GAME_WIDTH-BLOCK_WIDTH)
+                elif self._rotate:
+                    self._rotateCurrentTetriminoObject(currentTetriminoObject)
             self._goLeft = False           
             self._goRight = False
+            self._rotate = False
+
+    def _rotateCurrentTetriminoObject(self,currentTetriminoObject):
+        if self._shape == OTetrimino:
+            pass
+        elif self._shape == ITetrimino:
+            self._rotateITetrimino(currentTetriminoObject)
+        elif self._shape == TTetrimino:
+            self._rotateTTetrimino(currentTetriminoObject)
+        elif self._shape == LTetrimino:
+            self._rotateLTetrimino(currentTetriminoObject)
+        elif self._shape == JTetrimino:
+            self._rotateJTetrimino(currentTetriminoObject)
+        elif self._shape == STetrimino:
+            self._rotateSTetrimino(currentTetriminoObject)
+        elif self._shape == ZTetrimino:
+            self._rotateZTetrimino(currentTetriminoObject)
+
                 
                 
 
@@ -162,7 +185,6 @@ class Wave(object):
 
     def _initTTetrimino(self):
         left = math.floor((GAME_WIDTH-BLOCK_WIDTH)/40)*20
-        print(left)
         bottom = GAME_HEIGHT-TOP_EDGE-BLOCK_WIDTH
         topTTetrimino = TTetrimino(left,bottom)
         bottomLeftTTetrimino = TTetrimino(left-BLOCK_WIDTH,bottom-BLOCK_WIDTH)
