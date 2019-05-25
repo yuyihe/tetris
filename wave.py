@@ -77,7 +77,7 @@ class Wave(object):
         self._goLeft = False
         self._goRight = False
         self._rotate = False
-        self._shape = self._pickShape()
+        self._shape = TTetrimino
         self._currentTetriminoObject = self._determine(self._shape)
         
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
@@ -113,8 +113,8 @@ class Wave(object):
                     block.left = max(block.left-BLOCK_WIDTH,0)
                 elif self._goRight:
                     block.left = min(block.left+BLOCK_WIDTH,GAME_WIDTH-BLOCK_WIDTH)
-                elif self._rotate:
-                    self._rotateCurrentTetriminoObject(currentTetriminoObject)
+            if self._rotate:
+                self._rotateCurrentTetriminoObject(currentTetriminoObject)
             self._goLeft = False           
             self._goRight = False
             self._rotate = False
@@ -135,11 +135,79 @@ class Wave(object):
         elif self._shape == ZTetrimino:
             self._rotateZTetrimino(currentTetriminoObject)
 
-                
-                
+    def _rotateITetrimino(self,currentTetriminoObject):
+        if currentTetriminoObject[0]._position == 1:
+            self._rotateITetrimino1to2(currentTetriminoObject)  
+        elif currentTetriminoObject[0]._position == 2:
+            self._rotateITetrimino2to1(currentTetriminoObject)
 
+    def _rotateITetrimino1to2(self,currentTetriminoObject):
+        currentTetriminoObject[0].left = currentTetriminoObject[0].left+BLOCK_WIDTH
+        currentTetriminoObject[0].bottom = currentTetriminoObject[0].bottom+BLOCK_WIDTH
+        currentTetriminoObject[2].left = currentTetriminoObject[2].left-BLOCK_WIDTH
+        currentTetriminoObject[2].bottom = currentTetriminoObject[2].bottom-BLOCK_WIDTH
+        currentTetriminoObject[3].left = currentTetriminoObject[3].left-BLOCK_WIDTH*2
+        currentTetriminoObject[3].bottom = currentTetriminoObject[3].bottom-BLOCK_WIDTH*2
+        for block in currentTetriminoObject:
+            block._position = 2
+
+    def _rotateITetrimino2to1(self,currentTetriminoObject):
+        currentTetriminoObject[0].left = currentTetriminoObject[0].left-BLOCK_WIDTH
+        currentTetriminoObject[0].bottom = currentTetriminoObject[0].bottom-BLOCK_WIDTH
+        currentTetriminoObject[2].left = currentTetriminoObject[2].left+BLOCK_WIDTH
+        currentTetriminoObject[2].bottom = currentTetriminoObject[2].bottom+BLOCK_WIDTH
+        currentTetriminoObject[3].left = currentTetriminoObject[3].left+BLOCK_WIDTH*2
+        currentTetriminoObject[3].bottom = currentTetriminoObject[3].bottom+BLOCK_WIDTH*2
+        for block in currentTetriminoObject:
+            block._position = 1
+
+    def _rotateTTetrimino(self,currentTetriminoObject):
+        if currentTetriminoObject[0]._position == 1:
+            self._rotateTTetrimino1to2(currentTetriminoObject)  
+        elif currentTetriminoObject[0]._position == 2:
+            self._rotateTTetrimino2to3(currentTetriminoObject)
+        elif currentTetriminoObject[0]._position == 3:
+            self._rotateTTetrimino3to4(currentTetriminoObject) 
+        elif currentTetriminoObject[0]._position == 4:
+            self._rotateTTetrimino4to1(currentTetriminoObject) 
+    
+    def _rotateTTetrimino1to2(self,currentTetriminoObject):
+        currentTetriminoObject[1].left = currentTetriminoObject[1].left+BLOCK_WIDTH
+        currentTetriminoObject[1].bottom = currentTetriminoObject[1].bottom-BLOCK_WIDTH
+        for block in currentTetriminoObject:
+            block._position = 2
+    
+    def _rotateTTetrimino2to3(self,currentTetriminoObject):
+        currentTetriminoObject[1].left = currentTetriminoObject[1].left-BLOCK_WIDTH
+        currentTetriminoObject[1].bottom = currentTetriminoObject[1].bottom+BLOCK_WIDTH
+        currentTetriminoObject[0].bottom = currentTetriminoObject[0].bottom-BLOCK_WIDTH*2
+        for block in currentTetriminoObject:
+            block._position = 3
+
+    def _rotateTTetrimino3to4(self,currentTetriminoObject):
+        currentTetriminoObject[0].bottom = currentTetriminoObject[0].bottom+BLOCK_WIDTH*2
+        currentTetriminoObject[3].left = currentTetriminoObject[3].left-BLOCK_WIDTH
+        currentTetriminoObject[3].bottom = currentTetriminoObject[3].bottom-BLOCK_WIDTH
+        for block in currentTetriminoObject:
+            block._position = 4
+    
+    def _rotateTTetrimino4to1(self,currentTetriminoObject):
+        currentTetriminoObject[3].left = currentTetriminoObject[3].left+BLOCK_WIDTH
+        currentTetriminoObject[3].bottom = currentTetriminoObject[3].bottom+BLOCK_WIDTH
+        for block in currentTetriminoObject:
+            block._position = 1
+
+    def _rotateLTetrimino(self,currentTetriminoObject):
+        pass
+    
+    def _rotateJTetrimino(self,currentTetriminoObject):
+        pass
            
-        
+    def _rotateSTetrimino(self,currentTetriminoObject):
+        pass  
+    
+    def _rotateZTetrimino(self,currentTetriminoObject):
+        pass
 
     # HELPER METHODS FOR COLLISION DETECTION
 
