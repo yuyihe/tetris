@@ -98,9 +98,9 @@ class Wave(object):
                     part.draw(view)
 
     def _moveCurrentTetriminoObject(self,currentTetriminoObject,dt,direction):
-        if direction == left:
+        if (direction == left and self._allowedMoveLeft(currentTetriminoObject)):
             self._goLeft = True
-        elif direction == right:
+        elif (direction == right and self._allowedMoveRight(currentTetriminoObject)):
             self._goRight = True
         elif direction == up:
             self._rotate = True
@@ -110,14 +110,28 @@ class Wave(object):
             for block in currentTetriminoObject:
                 block.bottom = block.bottom-BLOCK_WIDTH
                 if self._goLeft:
-                    block.left = max(block.left-BLOCK_WIDTH,0)
+                    block.left = block.left-BLOCK_WIDTH
                 elif self._goRight:
-                    block.left = min(block.left+BLOCK_WIDTH,GAME_WIDTH-BLOCK_WIDTH)
+                    block.left = block.left+BLOCK_WIDTH
             if self._rotate:
                 self._rotateCurrentTetriminoObject(currentTetriminoObject)
             self._goLeft = False           
             self._goRight = False
             self._rotate = False
+
+    def _allowedMoveLeft(self,currentTetriminoObject):
+        allow = True
+        for part in currentTetriminoObject:
+            if part.left == 0:
+                allow = False
+        return allow
+
+    def _allowedMoveRight(self,currentTetriminoObject):
+        allow = True
+        for part in currentTetriminoObject:
+            if part.left == GAME_WIDTH-BLOCK_WIDTH:
+                allow = False
+        return allow
 
     def _rotateCurrentTetriminoObject(self,currentTetriminoObject):
         if self._shape == OTetrimino:
