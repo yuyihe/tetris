@@ -152,8 +152,16 @@ class Wave(object):
     def _rotateITetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateITetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateITetrimino2to1allowed(currentTetriminoObject)):
             self._rotateITetrimino2to1(currentTetriminoObject)
+    
+    def _rotateITetrimino2to1allowed(self,currentTetriminoObject):
+        if (currentTetriminoObject[0].left-BLOCK_WIDTH < 0
+        or currentTetriminoObject[2].left+BLOCK_WIDTH >= GAME_WIDTH
+        or currentTetriminoObject[3].left+BLOCK_WIDTH*2 >= GAME_WIDTH):
+            return False
+        else:
+            return True 
 
     def _rotateITetrimino1to2(self,currentTetriminoObject):
         currentTetriminoObject[0].left = currentTetriminoObject[0].left+BLOCK_WIDTH
@@ -178,13 +186,25 @@ class Wave(object):
     def _rotateTTetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateTTetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateTTetrimino2to3allowed(currentTetriminoObject)):
             self._rotateTTetrimino2to3(currentTetriminoObject)
-        elif currentTetriminoObject[0]._position == 3:
+        elif (currentTetriminoObject[0]._position == 3):
             self._rotateTTetrimino3to4(currentTetriminoObject) 
-        elif currentTetriminoObject[0]._position == 4:
+        elif (currentTetriminoObject[0]._position == 4 and self._rotateTTetrimino4to1allowed(currentTetriminoObject)):
             self._rotateTTetrimino4to1(currentTetriminoObject) 
     
+    def _rotateTTetrimino2to3allowed(self,currentTetriminoObject):
+        if (currentTetriminoObject[1].left-BLOCK_WIDTH < 0):
+            return False
+        else:
+            return True 
+    
+    def _rotateTTetrimino4to1allowed(self,currentTetriminoObject):
+        if (currentTetriminoObject[3].left+BLOCK_WIDTH >= GAME_WIDTH):
+            return False
+        else:
+            return True 
+
     def _rotateTTetrimino1to2(self,currentTetriminoObject):
         currentTetriminoObject[1].left = currentTetriminoObject[1].left+BLOCK_WIDTH
         currentTetriminoObject[1].bottom = currentTetriminoObject[1].bottom-BLOCK_WIDTH
@@ -214,12 +234,26 @@ class Wave(object):
     def _rotateLTetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateLTetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateLJTetrimino2to3allowed(currentTetriminoObject)):
             self._rotateLTetrimino2to3(currentTetriminoObject)
         elif currentTetriminoObject[0]._position == 3:
             self._rotateLTetrimino3to4(currentTetriminoObject) 
-        elif currentTetriminoObject[0]._position == 4:
+        elif (currentTetriminoObject[0]._position == 4 and self._rotateLJTetrimino4to1allowed(currentTetriminoObject)):
             self._rotateLTetrimino4to1(currentTetriminoObject) 
+
+    def _rotateLJTetrimino2to3allowed(self,currentTetriminoObject):
+        allow = True
+        for block in currentTetriminoObject:
+            if block.left == 0:
+                allow = False
+        return allow
+    
+    def _rotateLJTetrimino4to1allowed(self,currentTetriminoObject):
+        allow = True
+        for block in currentTetriminoObject:
+            if block.left == GAME_WIDTH-BLOCK_WIDTH:
+                allow = False
+        return allow 
     
     def _rotateLTetrimino1to2(self,currentTetriminoObject):
         currentTetriminoObject[1].left = currentTetriminoObject[1].left+BLOCK_WIDTH
@@ -260,11 +294,11 @@ class Wave(object):
     def _rotateJTetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateJTetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateLJTetrimino2to3allowed(currentTetriminoObject)):
             self._rotateJTetrimino2to3(currentTetriminoObject)
         elif currentTetriminoObject[0]._position == 3:
             self._rotateJTetrimino3to4(currentTetriminoObject) 
-        elif currentTetriminoObject[0]._position == 4:
+        elif (currentTetriminoObject[0]._position == 4 and self._rotateLJTetrimino4to1allowed(currentTetriminoObject)):
             self._rotateJTetrimino4to1(currentTetriminoObject) 
 
     def _rotateJTetrimino1to2(self,currentTetriminoObject):
@@ -306,8 +340,14 @@ class Wave(object):
     def _rotateSTetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateSTetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateSTetrimino2to1allowed(currentTetriminoObject)):
             self._rotateSTetrimino2to1(currentTetriminoObject) 
+
+    def _rotateSTetrimino2to1allowed(self,currentTetriminoObject):
+        if (currentTetriminoObject[2].left-BLOCK_WIDTH*2 < 0):
+            return False
+        else:
+            return True  
 
     def _rotateSTetrimino1to2(self,currentTetriminoObject):
         currentTetriminoObject[1].bottom = currentTetriminoObject[1].bottom-BLOCK_WIDTH*2
@@ -324,8 +364,14 @@ class Wave(object):
     def _rotateZTetrimino(self,currentTetriminoObject):
         if currentTetriminoObject[0]._position == 1:
             self._rotateZTetrimino1to2(currentTetriminoObject)  
-        elif currentTetriminoObject[0]._position == 2:
+        elif (currentTetriminoObject[0]._position == 2 and self._rotateZTetrimino2to1allowed(currentTetriminoObject)):
             self._rotateZTetrimino2to1(currentTetriminoObject) 
+
+    def _rotateZTetrimino2to1allowed(self,currentTetriminoObject):
+        if (currentTetriminoObject[0].left-BLOCK_WIDTH*2 < 0):
+            return False
+        else:
+            return True  
 
     def _rotateZTetrimino1to2(self,currentTetriminoObject):
         currentTetriminoObject[0].left = currentTetriminoObject[0].left+BLOCK_WIDTH*2
