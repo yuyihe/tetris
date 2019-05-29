@@ -133,6 +133,8 @@ class Wave(object):
             self._goRight = True
         elif direction == up:
             self._rotate = True
+        elif direction == down:
+            self._speed = GAME_SPEED/5
         self._time = self._time+dt
         if self._time > self._speed:
             self._time = 0
@@ -147,6 +149,7 @@ class Wave(object):
             self._goLeft = False           
             self._goRight = False
             self._rotate = False
+            self._speed = GAME_SPEED
 
     def _allowedMoveLeft(self,currentTetriminoObject):
         allow = True
