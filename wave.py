@@ -79,11 +79,36 @@ class Wave(object):
         self._rotate = False
         self._shape = self._pickShape()
         self._currentTetriminoObject = self._determine(self._shape)
+        self._pastTetriminoObject = []
         
     # UPDATE METHOD TO MOVE THE SHIP, ALIENS, AND LASER BOLTS
     def update(self,direction,dt,game):
-        if self._currentTetriminoObject is not None:           
-            self._moveCurrentTetriminoObject(self._currentTetriminoObject,dt,direction)
+        if self._currentTetriminoObject is not None: 
+            if self._notTouchedBottom(self._currentTetriminoObject):    
+                self._moveCurrentTetriminoObject(self._currentTetriminoObject,dt,direction)
+            else:
+                self._pastTetriminoObject = self._pastTetriminoObject+self._currentTetriminoObject
+                self._shape = self._pickShape()
+                self._currentTetriminoObject = self._determine(self._shape)
+
+    def _notTouchedBottom(self,currentTetriminoObject):
+        notTouched = True
+        for block in currentTetriminoObject:
+            if block.bottom <= 0:
+                notTouched = False
+            if self._collideWithExistingTetriminos(block):
+                notTouched = False
+    
+        return notTouched
+    
+    def _collideWithExistingTetriminos(self,block):
+        Collide = False
+        if self._pastTetriminoObject != []: 
+            for part in self._pastTetriminoObject:
+                if part.collides(block):
+                    Collide = True
+        return Collide
+
            
         
 
@@ -92,6 +117,10 @@ class Wave(object):
         """
         Draws the game objects to the view.
         """
+        if self._pastTetriminoObject is not None:
+            for part in self._pastTetriminoObject:
+                if part is not None:
+                    part.draw(view)
         if self._currentTetriminoObject is not None:
             for part in self._currentTetriminoObject:
                 if part is not None:
@@ -121,16 +150,22 @@ class Wave(object):
 
     def _allowedMoveLeft(self,currentTetriminoObject):
         allow = True
-        for part in currentTetriminoObject:
-            if part.left == 0:
+        for block in currentTetriminoObject:
+            if block.left == 0:
                 allow = False
+            for part in self._pastTetriminoObject:
+                if part.leftRestricted(block):
+                    allow = False
         return allow
 
     def _allowedMoveRight(self,currentTetriminoObject):
         allow = True
-        for part in currentTetriminoObject:
-            if part.left == GAME_WIDTH-BLOCK_WIDTH:
+        for block in currentTetriminoObject:
+            if block.left == GAME_WIDTH-BLOCK_WIDTH:
                 allow = False
+            for part in self._pastTetriminoObject:
+                if part.rightRestricted(block):
+                    allow = False
         return allow
 
     def _rotateCurrentTetriminoObject(self,currentTetriminoObject):

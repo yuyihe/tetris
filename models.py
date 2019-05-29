@@ -46,6 +46,26 @@ class OTetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+    
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 
 class ITetrimino(GRectangle):
@@ -62,6 +82,26 @@ class ITetrimino(GRectangle):
         super().__init__(left=left,bottom=bottom,width=BLOCK_WIDTH,height=BLOCK_WIDTH,fillcolor='cyan',linecolor='black')
         self._position = 1
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 class TTetrimino(GRectangle):
     """
@@ -78,6 +118,26 @@ class TTetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 class LTetrimino(GRectangle):
     """
@@ -94,6 +154,26 @@ class LTetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 class JTetrimino(GRectangle):
     """
@@ -110,6 +190,26 @@ class JTetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 class STetrimino(GRectangle):
     """
@@ -126,6 +226,26 @@ class STetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 class ZTetrimino(GRectangle):
     """
@@ -142,5 +262,25 @@ class ZTetrimino(GRectangle):
         self._position = 1
 
     # ADD MORE METHODS (PROPERLY SPECIFIED) AS NECESSARY
+    def collides(self,block):
+        blx = block.left+0.01
+        bly = block.bottom-0.01
+        brx = block.left+BLOCK_WIDTH-0.01
+        bry = block.bottom-0.01
+        return (self.contains((blx,bly)) or self.contains((brx,bry)))
+
+    def leftRestricted(self,block):
+        btx = block.left-0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left-0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
+
+    def rightRestricted(self,block):
+        btx = block.left+BLOCK_WIDTH+0.01
+        bty = block.bottom+BLOCK_WIDTH-0.01
+        bbx = block.left+BLOCK_WIDTH+0.01
+        bby = block.bottom-0.01
+        return (self.contains((btx,bty)) or self.contains((bbx,bby)))
 
 
